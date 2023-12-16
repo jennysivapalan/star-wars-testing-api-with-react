@@ -4,7 +4,7 @@ import "./App.css";
 
 function App() {
   const endpoint = "https://swapi.dev/api/people";
-  const [name, setName] = useState<string>("aaa");
+  const [name, setName] = useState<string>("Fetching name...");
 
   useEffect(() => {
     fetch(endpoint)
