@@ -17,7 +17,7 @@ function App() {
         if (status === 200) {
           const json = await response.json();
           setName(json.results[0].name);
-        }
+        } else setName("");
       } catch (error) {
         console.error("Error", error);
       }

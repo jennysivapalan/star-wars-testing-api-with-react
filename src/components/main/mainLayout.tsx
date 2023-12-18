@@ -7,7 +7,8 @@ interface MainProps {
 }
 
 const MainLayout: React.FC<MainProps> = ({ status, name }) => {
-  const errorMsg = status !== 200 && status != 0 ? <Error /> : <></>;
+  const errorMsg =
+    status !== 200 && status != 0 ? <Error status={status} /> : <></>;
   return (
     <>
       <div>

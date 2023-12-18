@@ -22,6 +22,12 @@ const errorResponse = http.get("https://swapi.dev/api/people", () => {
   });
 });
 
+const teaPotResponse = http.get("https://swapi.dev/api/people", () => {
+  return new HttpResponse(null, {
+    status: 418,
+  });
+});
+
 const server = setupServer();
 
 beforeAll(() => server.listen());
@@ -51,6 +57,14 @@ describe("App", () => {
     const errorMessage = await screen.findByText(
       "Oops... something went wrong, try again 🤕"
     );
+    expect(errorMessage).toBeInTheDocument();
+  });
+
+  test("returns tea pot response for 418 error", async () => {
+    server.use(teaPotResponse);
+    render(<App />);
+
+    const errorMessage = await screen.findByText("418 I'm a tea pot 🫖, silly");
     expect(errorMessage).toBeInTheDocument();
   });
 });
